@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string("name", 255)->nullable();
             $table->text("description")->nullable();
             $table->string("image", 255)->nullable();
-            $table->decimal("price", 6, 2);
+            $table->integer("price")->nullable();
             $table->timestamps();
         });
     }

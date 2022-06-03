@@ -24,12 +24,14 @@
                         <div class="col-lg-6 col-sm-6 col-6">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                         </div>
+
                         @php $total = 0 @endphp
                         @foreach((array) session('cart') as $id => $details)
                             @php $total += $details['price'] * $details['quantity'] @endphp
                         @endforeach
+
                         <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                            <p>Total: <span class="text-info">{{ $total }}</span></p>
                         </div>
                     </div>
                     @if(session('cart'))
@@ -51,6 +53,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="dropdown">
+                <a href="{{ route('products') }}" class="btn btn-secondary">
+                    <i class="fa fa-shopping-product" aria-hidden="true"></i> Product
+                </a>
             </div>
         </div>
     </div>
