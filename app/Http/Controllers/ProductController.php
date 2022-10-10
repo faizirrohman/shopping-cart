@@ -35,7 +35,8 @@ class ProductController extends Controller
      */
     public function addToCart($id)
     {
-        $product = Product::findOrFail($id);
+        try {
+            $product = Product::findOrFail($id);
           
         $cart = session()->get('cart', []);
   
@@ -51,6 +52,11 @@ class ProductController extends Controller
         }
           
         session()->put('cart', $cart);
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return "Something went wrong";
+        }
+        
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
   
