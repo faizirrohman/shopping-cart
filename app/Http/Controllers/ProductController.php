@@ -14,7 +14,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        try{
+            $products = Product::all();
+        } catch(\Exception err) {
+            return "Error: " . err->getMessage();
+        }
+
         return view('products', compact('products'));
     }
   
